@@ -1,0 +1,26 @@
+Package: simulatr
+Type: Package
+Title: Generator for Reproducible Fake Data 
+Version: 0.1.0.9000
+Date: 2023-01-18
+Authors@R: c(
+    person("Daniel", "Sabanes Bove", , "daniel.sabanes_bove@roche.com", role = "aut"),
+    person("Kevin", "Kunzmann", , "kevin.kunzmann@boehringer-ingelheim.com", role = "aut"),
+    person("Friedrich", "Pahlke", , "friedrich.pahlke@rpact.com", role = c("aut", "cre"))
+  )
+Description: An example package for learning about software development 
+    best-practices for R packages.
+License: CC BY 4.0
+Encoding: UTF-8
+LazyData: true
+URL: https://kkmann.github.io/workshop-r-swe, https://github.com/kkmann/workshop-r-swe
+BugReports: https://github.com/fpahlke/simulatr/issues
+Language: en-US
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
