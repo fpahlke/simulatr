@@ -30,10 +30,11 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown,
-	glue (>= 1.6.0),
-	ggplot2 (>= 3.0.0),
-	httr (>= 1.4.0),
-	dplyr (>= 1.0.0),
-    testthat (>= 3.0.0)
+    glue (>= 1.6.0),
+    ggplot2 (>= 3.0.0),
+    httr (>= 1.4.0),
+    dplyr (>= 1.0.0),
+    testthat (>= 3.0.0),
+    covr
 Config/testthat/edition: 3
 VignetteBuilder: knitr
