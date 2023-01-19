@@ -6,3 +6,5 @@ docs
 inst/doc
 dev
 /man/*.Rd
+/doc/
+/Meta/
