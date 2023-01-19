@@ -1,5 +1,5 @@
 ---
-title: "get-started"
+title: "Getting started with simulatr"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{get-started}
@@ -14,22 +14,27 @@ knitr::opts_chunk$set(
 )
 ```
 
+simulatr: Generator for Reproducible Fake Data 
+
 ```{r setup}
 library(simulatr)
 ```
 
-Simulate some longitudinal data:
+Simulate some continuous data:
 
 ```{r}
-simulate_longitudinal_data(
-  slope = -1, intercept = 10,
-  random_effects_vcov = matrix(c(
-    .25^2, .1,
-    .1, 2^2
-  ), byrow = TRUE, nrow = 2),
-  residual_sd = 0.5,
-  observation_times = c(2, 6, 12, 36, 52),
-  n_individuals = 10L,
-  seed = 42L
-)
+x <- getSimluatedTwoArmMeans(n1 = 50, n2 = 50, mean1 = 5, mean2 = 7, sd1 = 3, sd2 = 4)
 ```
+
+Print the results
+
+```{r}
+x
+```
+
+Plot the results
+
+```{r}
+plot(x)
+```
+

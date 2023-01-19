@@ -1,8 +1,8 @@
 Package: simulatr
 Type: Package
 Title: Generator for Reproducible Fake Data 
-Version: 0.1.0.9000
-Date: 2023-01-18
+Version: 0.1.0.9001
+Date: 2023-01-19
 Authors@R: c(
     person("Friedrich", "Pahlke", , "friedrich.pahlke@rpact.com", role = c("aut", "cre")),
     person("Daniel", "Sabanes Bove", , "daniel.sabanes_bove@roche.com", role = "aut"),
@@ -26,11 +26,12 @@ Imports:
 	utils,
 	graphics,
 	tools,
-	magrittr (>= 2.0.0)
+	checkmate (>= 2.0.0)
 Suggests: 
     knitr,
     rmarkdown,
-	checkmate (>= 2.0.0),
+	glue (>= 1.6.0),
+	ggplot2 (>= 3.0.0),
 	httr (>= 1.4.0),
 	dplyr (>= 1.0.0),
     testthat (>= 3.0.0)

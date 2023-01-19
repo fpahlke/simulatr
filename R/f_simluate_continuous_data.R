@@ -1,14 +1,38 @@
 
 #' 
-#' @seealso https://cran.r-project.org/package=simstudy
+#' @title 
+#' Get Simluated Two Arm Means
+#' 
+#' @description 
+#' Simluates and returns a normally distributed continuous dataset for two groups.
+#' 
+#' @param n1 a single integer value. The sample size of group 1.
+#' @param n2 a single integer value. The sample size of group 2.
+#' @param mean1 a single numeric value. The assumed mean of group 1.
+#' @param mean2 a single numeric value. The assumed mean of group 2.
+#' @param sd1 a single numeric value. The assumed standard deviation of group 1.
+#' @param sd2 a single numeric value. The assumed standard deviation of group 2.
+#' @param seed a single integer value. The start value for generating pseudo-random numbers.
+#' @param alternative a character string specifying the alternative hypothesis, 
+#'        must be one of "two.sided" (default), "greater" or "less".
+#' @param ... ensures that all arguments (starting from the "...") are to be named.
+#' 
+#' @details 
+#' If the \code{seed} is not specified (NA) the function \link{createSeed} will be used to create 
+#' a true random number as seed.
+#' 
+#' See \url{https://cran.r-project.org/package=simstudy} for a comprehensive R package for study data simulation.
+#' 
+#' @seealso \link{createSeed}
+#' 
+#' @examples 
+#' getSimluatedTwoArmMeans(n1 = 50, n2 = 50, mean1 = 5, mean2 = 7, sd1 = 3, sd2 = 4, seed = 123)
 #' 
 #' @export 
 #'
 getSimluatedTwoArmMeans <- function(n1, n2, mean1, mean2, sd1, sd2, ..., 
     seed = NA_integer_, 
     alternative = c("two.sided", "less", "greater")) {
-    
-    assertPackageIsInstalled("checkmate")
     
     checkmate::assertInt(n1, lower = 1)
     checkmate::assertInt(n2, lower = 1)
@@ -64,23 +88,59 @@ getSimluatedTwoArmMeans <- function(n1, n2, mean1, mean2, sd1, sd2, ...,
     return(result)
 }
 
-print.SimulationResult <- function(x) {
+#'
+#' @title 
+#' Print Simulation Result
+#' 
+#' @description 
+#' Generic function to print a \code{SimulationResult} object.
+#' 
+#' @param x a \code{SimulationResult} object to print.
+#' @param ... further arguments passed to or from other methods.
+#' 
+#' @export 
+#' 
+print.SimulationResult <- function(x, ...) {
     assertPackageIsInstalled("dplyr")
     attributes(x)[["class"]] <- NULL
     x$confInt <- paste0("[", paste0(x$confInt, collapse = ", "), "]")
     x$data <- dplyr::tibble(x$data)
-    print(x)
+    print(x, ...)
 }
 
-#' x <- getSimluatedTwoArmMeans(n1 = 50, n2 = 50, mean1 = 5, mean2 = 7, sd1 = 3, sd2 = 4)
-plot.SimulationResult <- function(x, ..., mainTitle = "Continuous Fake Data") {
+#'
+#' @title 
+#' Plot Simulation Result
+#' 
+#' @description 
+#' Generic function to plot a \code{SimulationResult} object.
+#' 
+#' @param x a \code{SimulationResult} object to plot.
+#' @param main an overall title for the plot.
+#' @param xlab a title for the x axis.
+#' @param ylab a title for the y axis.
+#' @param ... ensures that all arguments (starting from the "...") are to be named.
+#' 
+#' @details 
+#' Uses ggplot2 to create the plot.
+#' 
+#' @return 
+#' A ggplot2 object.
+#' 
+#' @examples 
+#' x <- getSimluatedTwoArmMeans(n1 = 50, n2 = 50, mean1 = 5, mean2 = 7, sd1 = 3, sd2 = 4, seed = 123)
+#' if (require(ggplot2)) plot(x)
+#' 
+#' @export 
+#' 
+plot.SimulationResult <- function(x, ..., main = "Continuous Fake Data", xlab = "Group", ylab = "Simulated Values") {
     assertPackageIsInstalled("ggplot2")
     data <- x$data
     p <- ggplot2::ggplot(
         data = x$data,
-        ggplot2::aes(y = values, x = group)
+        ggplot2::aes_string(x = 'group', y = 'values')
     )
-    p <- p + ggplot2::geom_boxplot(ggplot2::aes(fill = group))
+    p <- p + ggplot2::geom_boxplot(ggplot2::aes_string(fill = 'group'))
     p <- p + ggplot2::geom_point(
         colour = "#0e414e", shape = 20,
         position = ggplot2::position_jitter(width = .1),
@@ -96,11 +156,10 @@ plot.SimulationResult <- function(x, ..., mainTitle = "Continuous Fake Data") {
         panel.border = ggplot2::element_blank(),
         axis.line = ggplot2::element_line(colour = "black")
     )
-    p <- p + ggplot2::ggtitle(mainTitle)
-    p <- p + ggplot2::xlab("Group")
-    p <- p + ggplot2::ylab("Simulated Values")
+    p <- p + ggplot2::ggtitle(main)
+    p <- p + ggplot2::xlab(xlab)
+    p <- p + ggplot2::ylab(ylab)
 	p <- p + ggplot2::theme(legend.position = "none")
-    
-    p
+    return(p)
 }
 

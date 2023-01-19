@@ -17,6 +17,7 @@
 #' @import utils
 #' @import graphics
 #' @import tools
+#' @import checkmate
 #' 
 "_PACKAGE"
 #> [1] "_PACKAGE"
