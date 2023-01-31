@@ -47,7 +47,7 @@ test_that("For invalid input arguments 'getSimulatedTwoArmMeans' throws meaningf
     )
 })
 
-test_that("With defined seed 'getSimulatedTwoArmMeans' returns reproducible results", {
+test_that("Default display of 'getSimulatedTwoArmMeans' returns an output", {
     simResult <- getSimulatedTwoArmMeans(
         n1 = 10, n2 = 10, mean1 = 5, mean2 = 7,
         sd1 = 3, sd2 = 4, seed = 232323
