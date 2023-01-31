@@ -4,7 +4,7 @@
 \alias{createSeed}
 \title{Create Seed}
 \usage{
-createSeed(numberOfValues = 1, minValue = 1e+06, maxValue = 9999999)
+createSeed(numberOfValues = 1, minValue = 1e+06, maxValue = 9999999, ...)
 }
 \arguments{
 \item{numberOfValues}{a single integer value. Number of seeds to create, default is \code{1}.}
@@ -12,6 +12,8 @@ createSeed(numberOfValues = 1, minValue = 1e+06, maxValue = 9999999)
 \item{minValue}{a single integer value. The minimum value that a seed can have, default is \code{1000000}.}
 
 \item{maxValue}{a single integer value. The maximum value that a seed can have, default is \code{9999999}.}
+
+\item{...}{optional arguments.}
 }
 \value{
 an integer value or vector containing one or more seeds.
@@ -26,5 +28,5 @@ is better than the pseudo-random number algorithms typically used
 in computer programs. For more information see \url{https://www.random.org}.
 }
 \seealso{
-\link{getSimluatedTwoArmMeans}
+\link{getSimulatedTwoArmMeans}
 }

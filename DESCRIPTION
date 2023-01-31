@@ -1,8 +1,8 @@
 Package: simulatr
 Type: Package
 Title: Generator for Reproducible Fake Data 
-Version: 0.1.0.9001
-Date: 2023-01-19
+Version: 0.1.0.9002
+Date: 2023-01-25
 Authors@R: c(
     person("Friedrich", "Pahlke", , "friedrich.pahlke@rpact.com", role = c("aut", "cre")),
     person("Daniel", "Sabanes Bove", , "daniel.sabanes_bove@roche.com", role = "aut"),
@@ -17,7 +17,7 @@ URL: https://kkmann.github.io/workshop-r-swe, https://github.com/kkmann/workshop
 BugReports: https://github.com/fpahlke/simulatr/issues
 Language: en-US
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Depends: 
 	R (>= 3.5.0)
 Imports:
@@ -26,6 +26,7 @@ Imports:
 	utils,
 	graphics,
 	tools,
+	rlang,
 	checkmate (>= 2.0.0)
 Suggests: 
     knitr,

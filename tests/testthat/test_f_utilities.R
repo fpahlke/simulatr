@@ -20,3 +20,12 @@ test_that("The results of 'createSeed' depend on the input arguments as expected
     expect_true(all(seed >= 1000))
     expect_true(all(seed <= 5000))
 })
+
+test_that("'createSeed' returns valid seed although network connection is missing", {
+    expect_warning(seed <- createSeed(
+        minValue = 100000000, maxValue = 999999999,
+        test_exception = "network error"
+    ), "Failed to receive new seed from www.random.org: network error")
+    
+    expect_type(seed, "integer")
+})
